@@ -1,2 +1,6 @@
 PyQt5
 pdfminer
+filetype
+requests
+PyExecJS
+sip
