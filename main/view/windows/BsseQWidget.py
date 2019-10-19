@@ -1,7 +1,5 @@
-import sys
-from PyQt5.QtWidgets import QWidget, QDesktopWidget, QFileDialog, QPushButton, QMessageBox
+from PyQt5.QtWidgets import QWidget, QDesktopWidget, QPushButton, QMessageBox
 from PyQt5.QtCore import QCoreApplication
-from main.tools.PDFUtils import PDFUtils
 
 
 class BaseQWidget(QWidget):

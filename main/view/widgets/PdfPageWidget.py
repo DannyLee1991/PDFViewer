@@ -10,12 +10,13 @@ class PdfPageWidget(QWidget):
     def __init__(self, parent, page):
         super().__init__(parent=parent)
         self.page = page
-        self.setMinimumSize(700, 2024)
+
         self.initUI()
 
     def initUI(self):
         # self.all_text = ""
         vbox = QVBoxLayout()
+        total_height = 0
         for x in self.page:
             if isinstance(x, LTTextBoxHorizontal):
                 text = " ".join(x.get_text().split(os.linesep)).strip()
@@ -23,14 +24,18 @@ class PdfPageWidget(QWidget):
                 ed_text.setText(text)
                 ed_text.adjustSize()
 
+                total_height += ed_text.height()
+
                 vbox.addWidget(ed_text)
 
                 # ----添加翻译按钮----
                 if len(text) > 5:
-                    self.add_translate_bt(ed_text, text, vbox)
+                    bt = self.add_translate_bt(ed_text, text, vbox)
+                    # total_height += bt.height()
 
         self.setLayout(vbox)
-        print("initUI")
+
+        self.setMinimumSize(self.width(), total_height)
 
     def add_translate_bt(self, ed_text, text, vbox):
         bt_translate = QPushButton(v.bt_translate)
@@ -54,6 +59,7 @@ class PdfPageWidget(QWidget):
             self.sender().is_translate = not self.sender().is_translate
 
         bt_translate.clicked.connect(do_translate)
+        return bt_translate
 
     # def paintEvent(self, event):
     #     qp = QPainter()

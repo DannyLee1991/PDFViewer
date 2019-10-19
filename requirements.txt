@@ -3,4 +3,3 @@ pdfminer
 filetype
 requests
 PyExecJS
-sip

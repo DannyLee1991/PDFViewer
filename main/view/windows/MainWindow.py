@@ -1,5 +1,5 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QFileDialog, QVBoxLayout
+from PyQt5.QtWidgets import QFileDialog, QVBoxLayout
 from main.view.windows.BsseQWidget import BaseQWidget
 from main.view.widgets.PdfScrollWidget import PdfScrollWidget
 from main.tools.PDFUtils import PDFUtils
@@ -33,7 +33,7 @@ class MainWindow(BaseQWidget):
         self.quit_application()
 
     def show_load_pdf_dialog(self):
-        fname = QFileDialog.getOpenFileName(self, 'Open file', '/home')
+        fname = QFileDialog.getOpenFileName(self, 'Open file', '/')
         path = fname[0]
         if path:
             if is_pdf(path):
@@ -44,9 +44,3 @@ class MainWindow(BaseQWidget):
 
     def on_pdf_loaded(self):
         self.scroll_widget.load(self.crt_pdf_pages)
-
-
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    ex = MainWindow()
-    sys.exit(app.exec_())

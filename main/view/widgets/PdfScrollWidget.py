@@ -1,6 +1,5 @@
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QScrollArea
 from main.view.widgets.PdfPageWidget import PdfPageWidget
-import sip
 
 
 class PdfScrollWidget(QScrollArea):
@@ -21,13 +20,11 @@ class PdfScrollWidget(QScrollArea):
             if self.vbox.itemAt(i):
                 w = self.vbox.itemAt(i).widget()
                 self.vbox.removeWidget(w)
-                sip.delete(w)
 
         total_height = 0
         for page in pages:
             ppw = PdfPageWidget(self, page)
             self.vbox.addWidget(ppw)
             h = ppw.height()
-            print("page height : " + str(h))
             total_height += h
         self.scroll.setMinimumSize(self.width(), total_height)
