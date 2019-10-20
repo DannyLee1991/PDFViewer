@@ -19,7 +19,8 @@ class PdfPageWidget(QWidget):
         total_height = 0
         for x in self.page:
             if isinstance(x, LTTextBoxHorizontal):
-                text = " ".join(x.get_text().split(os.linesep)).strip()
+                txt_list = [txt[:-1] if str(txt).endswith('-') else txt for txt in x.get_text().split(os.linesep)]
+                text = " ".join(txt_list).strip()
                 ed_text = QTextEdit()
                 ed_text.setText(text)
                 ed_text.adjustSize()
